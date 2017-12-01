@@ -42,7 +42,7 @@ else {x<-table[1,1]/table[2,1]-table[1,2]/table[2,2]
 }
 
 
-#Hypothesis Test Chi Square test:
+#Hypothesis Test Chi Square test for crude data:
 
 test.Rate<-function(table){
   ex<-table[1,3]*table[2,1]/table[2,3]
@@ -123,18 +123,45 @@ ci.summary.irr<-function(data,ci)  #data should be a list of tables
     tab2<-data$stratification.level.2 #seperate tables for calculations
     x<-log(summary.irr(data))
     varx<-(tab1[1,3]*tab1[2,1]*tab1[2,2]/(tab1[2,3]*tab1[2,3])+tab2[1,3]*tab2[2,1]*tab2[2,2]/(tab2[2,3]*tab2[2,3]))/((tab1[1,1]*tab1[2,2]/tab1[2,3]+tab2[1,1]*tab2[2,2]/tab2[2,3])*(tab1[1,2]*tab1[2,1]/tab1[2,3]+tab2[1,2]*tab2[2,1]/tab2[2,3]))
-  }
+    lower.ci<-exp(x-z*sqrt(varx))
+    upper.ci<-exp(x+z*sqrt(varx)) #calculate upper and lower confidence interval
+    print(paste("IRR ", ci, "%CI: ", "(", round(lower.ci,2), " to ", round(upper.ci,2), ")", sep=""))
+    }
   else if(length(data) == 3){
-  
     tab1<-data$stratification.level.1 
     tab2<-data$stratification.level.2
     tab3<-data$stratification.level.3 #seperate tables for calculations
     x<-log(summary.irr(data))
     varx<-(tab1[1,3]*tab1[2,1]*tab1[2,2]/(tab1[2,3]*tab1[2,3])+tab2[1,3]*tab2[2,1]*tab2[2,2]/(tab2[2,3]*tab2[2,3])+tab3[1,3]*tab3[2,1]*tab3[2,2]/(tab3[2,3]*tab3[2,3]))/((tab1[1,1]*tab1[2,2]/tab1[2,3]+tab2[1,1]*tab2[2,2]/tab2[2,3]+tab3[1,1]*tab3[2,2]/tab3[2,3])*(tab1[1,2]*tab1[2,1]/tab1[2,3]+tab2[1,2]*tab2[2,1]/tab2[2,3]+tab3[1,2]*tab3[2,1]/tab3[2,3]))
-  }
     lower.ci<-exp(x-z*sqrt(varx))
-    upper.ci<-exp(x+z*sqrt(varx))
+    upper.ci<-exp(x+z*sqrt(varx)) #calculate upper and lower confidence interval
     print(paste("IRR ", ci, "%CI: ", "(", round(lower.ci,2), " to ", round(upper.ci,2), ")", sep=""))
+    }
+   else {print(c("this function is designed for 2 or 3 stratified tables to calculate summary IRR confidence interval"))}
 }
 
-
+#Hypothesis Test Chi Square test for stratified data:
+stratified.test<-function(data) {
+  if (length(data) == 2){
+    tab1<-data$stratification.level.1 
+    tab2<-data$stratification.level.2 #seperate tables for calculations
+    x<-tab1[1,1]+tab2[1,1]
+    ex<-tab1[1,3]*tab1[2,1]/tab1[2,3]+tab2[1,3]*tab2[2,1]/tab2[2,3]
+    varx<-tab1[1,3]*tab1[2,1]*tab1[2,2]/(tab1[2,3]*tab1[2,3])+tab2[1,3]*tab2[2,1]*tab2[2,2]/(tab2[2,3]*tab2[2,3])
+    zsquare<-(x-ex)*(x-ex)/varx #calculate the z-square in the hypothesis test
+    pvalue<-pchisq(zsquare,1,lower.tail = F) #calculate the p-value in the hypothesis test
+    cbind(zsquare,pvalue)
+  }
+  else if (length(data) == 3){
+    tab1<-data$stratification.level.1 
+    tab2<-data$stratification.level.2
+    tab3<-data$stratification.level.3 #seperate tables for calculations
+    x<-tab1[1,1]+tab2[1,1]+tab3[1,1]
+    ex<-tab1[1,3]*tab1[2,1]/tab1[2,3]+tab2[1,3]*tab2[2,1]/tab2[2,3]+tab3[1,3]*tab3[2,1]/tab3[2,3]
+    varx<-tab1[1,3]*tab1[2,1]*tab1[2,2]/(tab1[2,3]*tab1[2,3])+tab2[1,3]*tab2[2,1]*tab2[2,2]/(tab2[2,3]*tab2[2,3])+tab3[1,3]*tab3[2,1]*tab3[2,2]/(tab3[2,3]*tab3[2,3])
+    zsquare<-(x-ex)*(x-ex)/varx #calculate the z-square in the hypothesis test
+    pvalue<-pchisq(zsquare,1,lower.tail = F) #calculate the p-value in the hypothesis test
+    cbind(zsquare,pvalue)
+  }
+    else{print(c("this function is designed for 2 or 3 stratified tables to do the Chi square test"))}
+}
