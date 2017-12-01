@@ -108,24 +108,71 @@ my.table<- function(data){
 return(tab.table)
 }
 
-#suppose the a,b,c,d for males are 1,2,3,4 and for females are 5,6,7,8. Then you will enter the stratified data as the following vector:
-strat.dat <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17, 18, 19, 20)
-my.table(strat.dat)
+#suppose the a,b,c,d for BMI group 1 are 1,17,7,257 and 
+# for BMI group 2 are 3,7,14,52
+# for BMI group 3 are 9,15,30,107 and 
+# for BMI group 4 are 14,5,44,27. Then you will enter the stratified data as the following vector:
+
+test.data<- c(1,17,7,257,3,7,14,52,9,15,30,107,14,5,44,27) #test data from epi calculator
+my.table(test.data)
 
 
-#create function for stratified RR:
-stratRR<-function(data){
-  dat<-my.table(data)
+#create function for summary RR using MH weight:
+summary.RR<-function(data){
+  dat<-my.table(data)#arrange data in tables to calculate the stratum specific estimates
   weight.strata<-c() #vector that will contain the weight of each stratum
   rr.strata <- c() #vector that will contain the RR of each stratum
   for (l in 1:length(dat)){ #this loop will calculate the RR and weight of each stratum 
     weight.strata[[l]] <- (dat[[l]][[4]]*dat[[l]][[3]]) / dat[[l]][[9]]
     rr.strata[[l]] <-  (dat[[l]][[1]]/dat[[l]][[3]]) / (dat[[l]][[4]]/dat[[l]][[6]])
   }
-  weighted.rr <- weight.strata * rr.strata
+  weighted.rr <- weight.strata * rr.strata #multiply the RR of each stratum with the weight of each stratum
   rr <- sum(weighted.rr)/sum(weight.strata) 
   return(rr)
 }
 
-test.data<-c(150,50,20,30,50,10,80,70) #test data from HW4 of PHP 2200
-stratRR(test.data)
+
+summary.RR(test.data)
+
+#function for CI of summary RR using MH weight:
+summary.CI.RR<-function(data, ci=95){
+  alpha <- (100-ci)/100
+  z <- 1-alpha/2
+  x <- log(summary.RR(data))
+  dat <- my.table(data) #arranging data in tables to calculate the stratum specific estimates
+  upper <- c() #will contain the numerator of variance
+  lowerA <- c() #will keep a part of denominator
+  lowerB <- c() #will keep another part of denominator
+  for (l in 1:length(dat)){ #this loop will calculate the stratum-specific estimates that we need for variance
+    upper[[l]] <- ((dat[[l]][[7]]*dat[[l]][[3]]*dat[[l]][[6]]) - (dat[[l]][[1]]*dat[[l]][[4]]*dat[[l]][[9]])) / (dat[[l]][[9]]^2)
+    lowerA[[l]] <-  ((dat[[l]][[1]]*dat[[l]][[6]])/dat[[l]][[9]]) 
+    lowerB[[l]] <-  ((dat[[l]][[4]]*dat[[l]][[3]])/dat[[l]][[9]])
+  }
+  var.x <- sum(upper) / (sum(lowerA) * sum(lowerB)) #final weighted variance
+  upper.ci<- exp(x + (qnorm(z) * sqrt(var.x)))
+  lower.ci<- exp(x - (qnorm(z) * sqrt(var.x)))
+  print(paste(ci, "% CI: ", "(", round(lower.ci,2), " to ", round(upper.ci,2), ")", sep="")) 
+}
+
+summary.CI.RR(test.data)
+
+
+#function for summary hypothesis testing:
+summary.Test<-function(data){
+  dat<-my.table(data) # my.table function will calculate the margianl totals
+  x <- c() #will contain the numerator of variance
+  expected.x <- c() #will keep a part of denominator
+  var.x <- c() #will keep another part of denominator
+  for (l in 1:length(dat)){ #this loop will calculate the stratum-specific estimates that we need for variance
+    x[[l]] <- dat[[l]][[1]]
+    expected.x[[l]] <-  ((dat[[l]][[3]]*dat[[l]][[7]])/dat[[l]][[9]]) 
+    var.x[[l]] <-  (dat[[l]][[7]]*dat[[l]][[8]]*dat[[l]][[3]]*dat[[l]][[6]]) / (dat[[l]][[9]]^3)
+  }
+  z.square<-round(((sum(x)- sum(expected.x))^2 / sum(var.x)), 3)
+  p.value<-round((pchisq(z.square, df= 1, lower.tail = F)), 5)
+  output<-cbind(z.square, p.value)
+  return(output)
+}
+
+summary.Test(test.data)
+
