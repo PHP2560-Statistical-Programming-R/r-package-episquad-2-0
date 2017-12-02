@@ -8,7 +8,7 @@ crude.table<- function(a,b,c,d){
   tab.table <- as.table(tab)
   return(tab.table)
 }
-t1<-crude.table(41,15,28010,19017)
+
 
 
 
@@ -20,7 +20,7 @@ crude.Rate<-function(table, measure=c("IRR", "IRD")){ #will calculate rate ratio
   else {ird<-(table[1,1]/table[2,1]) - (table[1,2]/table[2,2]) #ird is risk difference
   return(round(ird,5))}
 }
-crude.Rate(t1,measure = "IRR")
+
 
 #function for confidence interval of rate ratio or rate difference
 rate.ci<-function(table, ci, measure=c("IRR","IRD")) {#will calculate rate ratio and rate difference confidence interval
@@ -30,13 +30,13 @@ rate.ci<-function(table, ci, measure=c("IRR","IRD")) {#will calculate rate ratio
   x<-log((table[1,1]/table[2,1])/(table[1,2]/table[2,2]))
   varx<-sqrt(1/table[1,1]+1/table[1,2])
   lower.ci<-exp(x-z*varx)
-  upper.ci<-exp(x+z*varx)
+  upper.ci<-exp(x+z*varx)#calculate upper and lower confidence interval
   print(paste("IRD ", ci, "%CI: ", "(", round(lower.ci,5), " to ", round(upper.ci,5), ")", sep=""))
 }
 else {x<-table[1,1]/table[2,1]-table[1,2]/table[2,2]
       varx<-table[1,1]/(table[2,1]*table[2,1])+table[1,2]/(table[2,2]*table[2,2])
       lower.ci<-x-z*sqrt(varx)
-      upper.ci<-x+z*sqrt(varx)
+      upper.ci<-x+z*sqrt(varx)#calculate upper and lower confidence interval
       print(paste("IRR ", ci, "%CI: ", "(", round(lower.ci,5), " to ", round(upper.ci,5), ")", sep=""))
 }
 }
@@ -80,88 +80,111 @@ stratified.table<-function(data) # data should be a set of vectors
      rownames(tab3) <- c('Disease', 'PersonTime')
      tab.table3 <- as.table(tab3)#change the matrix as a table
      tab.table<-list(stratification.level.1= tab.table1, stratification.level.2= tab.table2, stratification.level.3= tab.table3)
-   } else {tab.table<-c("the data should contain 8 or 12 numbers because this function is designed for 2 or 3 stratified tables")}
-  return(tab.table)} #this function is designed for 2 or 3 stratified tables
+   } 
+  else if(length(data) == 16){
+    tab1<- matrix(c(data[1], data[2], (data[1]+data[2]), data[3], data[4], (data[3]+data[4])), ncol=3, byrow = T) #create a matrix with the marginal values
+    colnames(tab1) <- c('Exposure', 'No Exposure', "Total")
+    rownames(tab1) <- c('Disease', 'PersonTime')
+    tab.table1 <- as.table(tab1) #change the matrix as a table
+    tab2<- matrix(c(data[5], data[6], (data[5]+data[6]), data[7], data[8], (data[7]+data[8])), ncol=3, byrow = T) #create a matrix with the marginal values
+    colnames(tab2) <- c('Exposure', 'No Exposure', "Total")
+    rownames(tab2) <- c('Disease', 'PersonTime')
+    tab.table2 <- as.table(tab2)#change the matrix as a table
+    tab3<- matrix(c(data[9], data[10], (data[9]+data[10]), data[11], data[12], (data[11]+data[12])), ncol=3, byrow = T) #create a matrix with the marginal values
+    colnames(tab3) <- c('Exposure', 'No Exposure', "Total")
+    rownames(tab3) <- c('Disease', 'PersonTime')
+    tab.table3 <- as.table(tab3)#change the matrix as a table
+    tab4<- matrix(c(data[13], data[14], (data[13]+data[14]), data[15], data[16], (data[15]+data[16])), ncol=3, byrow = T) #create a matrix with the marginal values
+    colnames(tab4) <- c('Exposure', 'No Exposure', "Total")
+    rownames(tab4) <- c('Disease', 'PersonTime')
+    tab.table4 <- as.table(tab4)#change the matrix as a table
+    tab.table<-list(stratification.level.1= tab.table1, stratification.level.2= tab.table2, stratification.level.3= tab.table3, stratification.level.4= tab.table4)
+  } 
+  else if(length(data) == 20){
+    tab1<- matrix(c(data[1], data[2], (data[1]+data[2]), data[3], data[4], (data[3]+data[4])), ncol=3, byrow = T) #create a matrix with the marginal values
+    colnames(tab1) <- c('Exposure', 'No Exposure', "Total")
+    rownames(tab1) <- c('Disease', 'PersonTime')
+    tab.table1 <- as.table(tab1) #change the matrix as a table
+    tab2<- matrix(c(data[5], data[6], (data[5]+data[6]), data[7], data[8], (data[7]+data[8])), ncol=3, byrow = T) #create a matrix with the marginal values
+    colnames(tab2) <- c('Exposure', 'No Exposure', "Total")
+    rownames(tab2) <- c('Disease', 'PersonTime')
+    tab.table2 <- as.table(tab2)#change the matrix as a table
+    tab3<- matrix(c(data[9], data[10], (data[9]+data[10]), data[11], data[12], (data[11]+data[12])), ncol=3, byrow = T) #create a matrix with the marginal values
+    colnames(tab3) <- c('Exposure', 'No Exposure', "Total")
+    rownames(tab3) <- c('Disease', 'PersonTime')
+    tab.table3 <- as.table(tab3)#change the matrix as a table
+    tab4<- matrix(c(data[13], data[14], (data[13]+data[14]), data[15], data[16], (data[15]+data[16])), ncol=3, byrow = T) #create a matrix with the marginal values
+    colnames(tab4) <- c('Exposure', 'No Exposure', "Total")
+    rownames(tab4) <- c('Disease', 'PersonTime')
+    tab.table4 <- as.table(tab4)#change the matrix as a table
+    tab5<- matrix(c(data[17], data[18], (data[17]+data[18]), data[19], data[20], (data[19]+data[20])), ncol=3, byrow = T) #create a matrix with the marginal values
+    colnames(tab5) <- c('Exposure', 'No Exposure', "Total")
+    rownames(tab5) <- c('Disease', 'PersonTime')
+    tab.table5 <- as.table(tab5)#change the matrix as a table
+    tab.table<-list(stratification.level.1= tab.table1, stratification.level.2= tab.table2, stratification.level.3= tab.table3, stratification.level.4= tab.table4, stratification.level.5= tab.table5)
+  } 
+  else {tab.table<-c("this function is designed for 2 to 5 stratified tables")}
+  return(tab.table)} #this function is designed for 2 or 5 stratified tables
 
 
   
 #function to calculate summary IRR using Mantel‐Haenszel weights
 summary.irr<-function(data) #data should be a list of tables
   {
-  if(length(data) == 2){
-    tab1<-data$stratification.level.1 
-    tab2<-data$stratification.level.2 #seperate tables for calculations
-    w1<-tab1[1,2]*tab1[2,1]/tab1[2,3]
-    w2<-tab2[1,2]*tab2[2,1]/tab2[2,3]
-    irr1<-crude.Rate(tab1,measure = "IRR")
-    irr2<-crude.Rate(tab2,measure = "IRR") #calculate crude IRR for each table
-    summary.rate.ratio<-(w1*irr1+w2*irr2)/(w1+w2) #combine IRR from each table to get summary IRR
-  }
-  else if (length(data) == 3){
-    tab1<-data$stratification.level.1 
-    tab2<-data$stratification.level.2
-    tab3<-data$stratification.level.3 #seperate tables for calculations
-    w1<-tab1[1,2]*tab1[2,1]/tab1[2,3]
-    w2<-tab2[1,2]*tab2[2,1]/tab2[2,3]
-    w3<-tab3[1,2]*tab3[2,1]/tab3[2,3]
-    irr1<-crude.Rate(tab1,measure = "IRR")
-    irr2<-crude.Rate(tab2,measure = "IRR")
-    irr3<-crude.Rate(tab3,measure = "IRR")#using the function created before to calculate crude IRR for each table
-    summary.rate.ratio<-(w1*irr1+w2*irr2+w3*irr3)/(w1+w2+w3) #combine IRR from each table to get summary IRR
-  }
-  else {summary.rate.ratio<-c("this function is designed for 2 or 3 stratified tables to calculate MH weighted IRR")}
+  weight.strata<-c() #vector that will contain the weight of each stratum
+  irr.strata <- c() #vector that will contain the RR of each stratum
+  if (length(data) %in% c(2,3,4,5)){
+  for (l in 1:length(data)){ #this loop will calculate the RR and weight of each stratum 
+    weight.strata[[l]]<-data[[l]][1,2]*data[[l]][2,1]/data[[l]][2,3]
+    irr.strata[[l]]<-crude.Rate(data[[l]], measure = "IRR")
+    summary.rate.ratio<-sum(weight.strata*irr.strata)/sum(weight.strata)}
+    }
+ 
+  else {summary.rate.ratio<-c("this function is designed for 2 to 5 stratified tables to calculate MH weighted IRR")}
   return(summary.rate.ratio)
 }
 
 #function to calculate confidence interval for summary IRR
-ci.summary.irr<-function(data,ci)  #data should be a list of tables
-{
-  alpha<-(100-95)/200
-  z<-qnorm(alpha,lower.tail=FALSE)
-  if(length(data) == 2){
-    tab1<-data$stratification.level.1 
-    tab2<-data$stratification.level.2 #seperate tables for calculations
-    x<-log(summary.irr(data))
-    varx<-(tab1[1,3]*tab1[2,1]*tab1[2,2]/(tab1[2,3]*tab1[2,3])+tab2[1,3]*tab2[2,1]*tab2[2,2]/(tab2[2,3]*tab2[2,3]))/((tab1[1,1]*tab1[2,2]/tab1[2,3]+tab2[1,1]*tab2[2,2]/tab2[2,3])*(tab1[1,2]*tab1[2,1]/tab1[2,3]+tab2[1,2]*tab2[2,1]/tab2[2,3]))
-    lower.ci<-exp(x-z*sqrt(varx))
-    upper.ci<-exp(x+z*sqrt(varx)) #calculate upper and lower confidence interval
-    print(paste("IRR ", ci, "%CI: ", "(", round(lower.ci,2), " to ", round(upper.ci,2), ")", sep=""))
-    }
-  else if(length(data) == 3){
-    tab1<-data$stratification.level.1 
-    tab2<-data$stratification.level.2
-    tab3<-data$stratification.level.3 #seperate tables for calculations
-    x<-log(summary.irr(data))
-    varx<-(tab1[1,3]*tab1[2,1]*tab1[2,2]/(tab1[2,3]*tab1[2,3])+tab2[1,3]*tab2[2,1]*tab2[2,2]/(tab2[2,3]*tab2[2,3])+tab3[1,3]*tab3[2,1]*tab3[2,2]/(tab3[2,3]*tab3[2,3]))/((tab1[1,1]*tab1[2,2]/tab1[2,3]+tab2[1,1]*tab2[2,2]/tab2[2,3]+tab3[1,1]*tab3[2,2]/tab3[2,3])*(tab1[1,2]*tab1[2,1]/tab1[2,3]+tab2[1,2]*tab2[2,1]/tab2[2,3]+tab3[1,2]*tab3[2,1]/tab3[2,3]))
-    lower.ci<-exp(x-z*sqrt(varx))
-    upper.ci<-exp(x+z*sqrt(varx)) #calculate upper and lower confidence interval
-    print(paste("IRR ", ci, "%CI: ", "(", round(lower.ci,2), " to ", round(upper.ci,2), ")", sep=""))
-    }
-   else {print(c("this function is designed for 2 or 3 stratified tables to calculate summary IRR confidence interval"))}
-}
-
+ ci.summary.irr<-function(data,ci)  #data should be a list of tables
+   {
+       alpha<-(100-ci)/200
+       z<-qnorm(alpha,lower.tail=FALSE)
+       if(length(data) %in% c(2,3,4,5)){
+           upper <- c() #will contain the numerator of variance
+           lowerA <- c() #will keep a part of denominator
+           lowerB <- c() #will keep another part of denominator
+           for (l in 1:length(data)){ #this loop will calculate the stratum-specific estimates that we need for variance
+             upper[[l]]<-data[[l]][1,3]*data[[l]][2,1]*data[[l]][2,2]/(data[[l]][2,3]*data[[l]][2,3])
+             lowerA[[l]]<-data[[l]][1,1]*data[[l]][2,2]/data[[l]][2,3]
+             lowerB[[l]]<-data[[l]][1,2]*data[[l]][2,1]/data[[l]][2,3]
+             x<-log(summary.irr(data))
+             varx<-sum(upper)/(sum(lowerA)*sum(lowerB))
+             lower.ci<-exp(x-z*sqrt(varx))
+             upper.ci<-exp(x+z*sqrt(varx)) #calculate upper and lower confidence interval
+             ci<-paste(round(lower.ci,2),round(upper.ci,2))
+                           }
+                       }
+              else {ci<-c("this function is designed for 2 to 5 stratified tables to calculate summary IRR confidence interval")}
+             return(ci)}
+ 
 #Hypothesis Test Chi Square test for stratified data:
-stratified.test<-function(data) {
-  if (length(data) == 2){
-    tab1<-data$stratification.level.1 
-    tab2<-data$stratification.level.2 #seperate tables for calculations
-    x<-tab1[1,1]+tab2[1,1]
-    ex<-tab1[1,3]*tab1[2,1]/tab1[2,3]+tab2[1,3]*tab2[2,1]/tab2[2,3]
-    varx<-tab1[1,3]*tab1[2,1]*tab1[2,2]/(tab1[2,3]*tab1[2,3])+tab2[1,3]*tab2[2,1]*tab2[2,2]/(tab2[2,3]*tab2[2,3])
-    zsquare<-(x-ex)*(x-ex)/varx #calculate the z-square in the hypothesis test
-    pvalue<-pchisq(zsquare,1,lower.tail = F) #calculate the p-value in the hypothesis test
-    cbind(zsquare,pvalue)
-  }
-  else if (length(data) == 3){
-    tab1<-data$stratification.level.1 
-    tab2<-data$stratification.level.2
-    tab3<-data$stratification.level.3 #seperate tables for calculations
-    x<-tab1[1,1]+tab2[1,1]+tab3[1,1]
-    ex<-tab1[1,3]*tab1[2,1]/tab1[2,3]+tab2[1,3]*tab2[2,1]/tab2[2,3]+tab3[1,3]*tab3[2,1]/tab3[2,3]
-    varx<-tab1[1,3]*tab1[2,1]*tab1[2,2]/(tab1[2,3]*tab1[2,3])+tab2[1,3]*tab2[2,1]*tab2[2,2]/(tab2[2,3]*tab2[2,3])+tab3[1,3]*tab3[2,1]*tab3[2,2]/(tab3[2,3]*tab3[2,3])
-    zsquare<-(x-ex)*(x-ex)/varx #calculate the z-square in the hypothesis test
-    pvalue<-pchisq(zsquare,1,lower.tail = F) #calculate the p-value in the hypothesis test
-    cbind(zsquare,pvalue)
-  }
-    else{print(c("this function is designed for 2 or 3 stratified tables to do the Chi square test"))}
-}
+ stratified.test<-function(data) {
+      if(length(data) %in% c(2,3,4,5)){
+        x<-c()
+        ex<-c()
+        varx<-c()
+          for (l in 1:length(data)) {
+            x[[l]]<-data[[l]][1,1]
+            ex[[l]]<-data[[l]][1,3]*data[[l]][2,1]/data[[l]][2,3]
+            varx[[l]]<-data[[l]][1,3]*data[[l]][2,1]*data[[l]][2,2]/(data[[l]][2,3]*data[[l]][2,3])
+            zsquare<-(sum(x)-sum(ex))^2/sum(varx) #calculate the z-square in the hypothesis test
+            pvalue<-pchisq(zsquare,1,lower.tail = F) #calculate the p-value in the hypothesis test
+            output<-cbind(zsquare,pvalue)}
+         }
+       else{output<-c("this function is designed for 2 to 5 stratified tables to do the Chi square test")}
+   return(output)
+ }
+ 
+ 
+ 
+ 
