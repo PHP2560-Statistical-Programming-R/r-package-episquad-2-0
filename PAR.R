@@ -1,8 +1,8 @@
 #Basic Input Information
-tab<-c(a,b,c,d) 
-#'a' = exposed and diseased 
+tab<-c(a,b,c,d)
+#'a' = exposed and diseased
 #'b' = non-exposed but diseased
-#'c' = exposed but not diseased 
+#'c' = exposed but not diseased
 #'d' = non-exposed and not diseased
 
 n1<-a+c # total exposed
@@ -26,4 +26,10 @@ PAR<- function(a,b,c,d,ci=95){
   print(paste(ci, "% CI: ", "(", round(PAR.lower.CI,2), " to ", round(PAR.upper.CI,2), ")", sep=""))
   print(paste("The Population Attributable Risk Percent is", round(PARpercent,3), "%", sep=" "))
   print(paste(ci, "% CI: ", "(", round(PARpercent.lower.CI,2), " to ", round(PARpercent.upper.CI,2), ")", sep=""))
+  if (a<0 | b<0 | c<0| d<0){
+    print("Warning: cannot have negative value")
+  }
+  if (ci<0){
+    print("Warning: cannot have negative value for confidence interval")
+  }
 }
