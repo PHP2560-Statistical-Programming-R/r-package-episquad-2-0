@@ -1,0 +1,54 @@
+\name{rate.ci}
+\alias{rate.ci}
+%- Also NEED an '\alias' for EACH other topic documented here.
+\title{
+Confidence Interval of Crude Rate
+}
+\description{
+This function calculates confidence interval of crude rate ratio or rate difference
+}
+\usage{
+rate.ci(table, ci, measure =”IRR”)
+rate.ci(table, ci, measure =”IRD”)
+
+}
+%- maybe also 'usage' for other objects documented here.
+\arguments{
+  \item{table}{
+2 by 2 table can be created using crude.table() function
+}
+\item{ci}{
+indicate how much confidence interval do you want
+measure: indicate you want to calculate confidence interval either for rate ratio or rate difference
+
+}
+}
+\details{
+%%  ~~ If necessary, more details than the description above ~~
+}
+\value{
+%%  ~Describe the value returned
+%%  If it is a LIST, use
+%%  \item{comp1 }{Description of 'comp1'}
+%%  \item{comp2 }{Description of 'comp2'}
+%% ...
+}
+\references{
+%% ~put references to the literature/web site here ~
+}
+\author{
+Ze Zhang
+}
+\note{
+%%  ~~further notes~~
+}
+
+%% ~Make other sections like Warning with \section{Warning }{....} ~
+
+\seealso{
+%% ~~objects to See Also as \code{\link{help}}, ~~~
+}
+\examples{
+table1<- crude.table(41,15,28010,19017)
+rate.ci(table1,95,  measure=”IRR)
+rate.ci(table1, 95, measure=”IRD)
