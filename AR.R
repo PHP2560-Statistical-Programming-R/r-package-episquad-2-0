@@ -1,8 +1,8 @@
 #Basic Input Information
-tab<-c(a,b,c,d) 
-#'a' = exposed and diseased 
+tab<-c(a,b,c,d)
+#'a' = exposed and diseased
 #'b' = non-exposed but diseased
-#'c' = exposed but not diseased 
+#'c' = exposed but not diseased
 #'d' = non-exposed and not diseased
 
 n1<-a+c # total exposed
@@ -25,6 +25,12 @@ AR<- function(a,b,c,d, ci=95){
   ARpercent.upper.CI <- ARpercent + ARpercent*(qnorm(z)*se/AR)
   ARpercent.lower.CI <- ARpercent - ARpercent*(qnorm(z)*se/AR)
   print(paste(ci, "% CI: ", "(", round(ARpercent.lower.CI,3), " to ", round(ARpercent.upper.CI,3), ")", sep=""))
+  if (a<0 | b<0 | c<0| d<0){
+    print("Warning: cannot have negative value")
+  }
+  if (ci<0){
+    print("Warning: cannot have negative value for confidence interval")
+  }
 }
 
 #Confidence Interval around AR% calculated according to Rosenberg 1998
