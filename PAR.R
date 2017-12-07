@@ -5,7 +5,7 @@
 #'c' = exposed but not diseased
 #'d' = non-exposed and not diseased
 
-table<- function(a,b,c,d){
+tablex<- function(a,b,c,d){
   n1<-a+c # total exposed
   n0<-b+d # total non-exposed
   m1<-a+b # total diseased
@@ -29,11 +29,9 @@ PAR<- function(table, ci=95){
   z<- 1-(.5*((100-ci)/100))
   PAR.upper.CI <- PAR + (qnorm(z) * se)
   PAR.lower.CI <- PAR - (qnorm(z) * se)
-  print(paste("The Population Attributable Risk is", round(PAR,3)))
-  print(paste(ci, "% CI: ", "(", round(PAR.lower.CI,2), " to ", round(PAR.upper.CI,2), ")", sep=""))
-  if (ci<0){
-    print("Warning: cannot have negative value for confidence interval")
-  }
+  print(paste("Population Attributable Risk ", round(PAR,3), ", ", ci, "% CI: ", "(", round(PAR.lower.CI,3), " to ", round(PAR.upper.CI,3), ")", sep=""))
+  
+  
 }
 
 #PAR % with Confidence Intervals
@@ -43,10 +41,7 @@ PARpercent<- function(table, ci=95){
   z<- 1-(.5*((100-ci)/100))
   PARpercent.upper.CI <- PARpercent + (qnorm(z) * sePARpercent)
   PARpercent.lower.CI <- PARpercent - (qnorm(z) * sePARpercent)
-  print(paste("The Population Attributable Risk Percent is", round(PARpercent,3), "%", sep=" "))
-  print(paste(ci, "% CI: ", "(", round(PARpercent.lower.CI,2), " to ", round(PARpercent.upper.CI,2), ")", sep=""))
-  if (ci<0){
-    print("Warning: cannot have negative value for confidence interval")
-  }
+  
+  print(paste("Population Attributable Risk Percent ", round(PARpercent,3), "%", ", ", ci, "% CI: ", "(", round(PARpercent.lower.CI,2), "% to ", round(PARpercent.upper.CI,2), "%)", sep=""))
 }
 

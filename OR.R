@@ -5,7 +5,7 @@
 #'c' = exposed but not diseased
 #'d' = non-exposed and not diseased
 
-table<- function(a,b,c,d){
+tablex<- function(a,b,c,d){
   n1<-a+c # total exposed
   n0<-b+d # total non-exposed
   m1<-a+b # total diseased
@@ -25,18 +25,15 @@ table<- function(a,b,c,d){
 #Function for calculating the Odds Ratio with Confidence Intervals
 # 95% Confidence Interval is the default setting
 OR<- function(table, ci=95){
-  x<- log(table[1,1]*table[2,2]/table[1,2]*table[2,1])
+  x<- log((table[1,1]*table[2,2]/table[1,2]*table[2,1]))
   OR<- (table[1,1]*table[2,2]/table[1,2]*table[2,1])
   var<- ((1/table[1,1])+(1/table[1,2])+(1/table[2,1])+(1/table[2,2]))
   se<- sqrt(var)
   z<- 1-(.5*((100-ci)/100))
   upper.CI <- exp(x + (qnorm(z) * se))
   lower.CI <- exp(x - (qnorm(z) * se))
-  print(paste("The Odds Ratio is", round(OR, 2), sep=" "))
-  print(paste(ci, "% CI: ", "(", round(lower.CI,2), " to ", round(upper.CI,2), ")", sep=""))
-  if (ci<0){
-    print("Warning: cannot have negative value for confidence interval")
-  }
+  print(paste("Odds Ratio", round(OR, 2), ", ", ci, "% CI: ", "(", round(lower.CI,2), " to ", round(upper.CI,2), ")", sep=""))
+  
 }
 
 

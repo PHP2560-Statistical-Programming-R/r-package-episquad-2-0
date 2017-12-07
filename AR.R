@@ -6,7 +6,7 @@
 #'d' = non-exposed and not diseased
 
 
-table<- function(a,b,c,d){
+tablex<- function(a,b,c,d){
   n1<-a+c # total exposed
   n0<-b+d # total non-exposed
   m1<-a+b # total diseased
@@ -29,11 +29,7 @@ AR<- function(table, ci=95){
   z<- 1-(.5*((100-ci)/100))
   upper.CI <- AR + (qnorm(z)*se)
   lower.CI <- AR - (qnorm(z)*se)
-  print(paste("The Attributable Risk is", round(AR,3)))
-  print(paste(ci, "% CI: ", "(", round(lower.CI,3), " to ", round(upper.CI,3), ")", sep=""))
-  if (ci<0){
-    print("Warning: cannot have negative value for confidence interval")
-  }
+  print(paste("Attributable Risk ", round(AR,3), ", ", ci, "% CI: ", "(", round(lower.CI,3), " to ", round(upper.CI,3), ")", sep=""))
 }
 
 ARpercent<- function(table, ci=95){
@@ -43,11 +39,7 @@ ARpercent<- function(table, ci=95){
   z<- 1-(.5*((100-ci)/100))
   ARpercent.upper.CI <- ARpercent + ARpercent*(qnorm(z)*se/AR)
   ARpercent.lower.CI <- ARpercent - ARpercent*(qnorm(z)*se/AR)
-  print(paste("The Attributable Risk Percent is", round(ARpercent, 3), "%", sep=" "))
-  print(paste(ci, "% CI: ", "(", round(ARpercent.lower.CI,3), " to ", round(ARpercent.upper.CI,3), ")", sep=""))
-  if (ci<0){
-    print("Warning: cannot have negative value for confidence interval")
+  print(paste("Attributable Risk Percent ", round(ARpercent,3), "%", ", ", ci, "% CI: ", "(", round(ARpercent.lower.CI,2), "% to ", round(ARpercent.upper.CI,2), "%)", sep=""))
   }
-}
 #Confidence Interval around AR% calculated according to Rosenberg 1998
 
