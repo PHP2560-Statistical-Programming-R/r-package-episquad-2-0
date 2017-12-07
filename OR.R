@@ -19,9 +19,6 @@ table<- function(a,b,c,d){
   if (a<0 | b<0 | c<0| d<0){
     print("Warning: cannot have negative value")
   }
-  if (ci<0){
-    print("Warning: cannot have negative value for confidence interval")
-  }
 }
 
 
