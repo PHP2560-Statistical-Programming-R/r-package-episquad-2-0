@@ -1,27 +1,24 @@
-\name{risk}
-\alias{risk}
+\name{hp.test}
+\alias{hp.test}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Risk Calculation
+Hypothesis Testing
 }
 \description{
-This function takes a vector of data and calculates risk ratio or risk difference along with confidence interval and result of hypothesis testing for crude and stratified data.
+This function takes a vector of data and calculates results of hypothesis testing for crude or stratified data.
 }
 \usage{
-risk (data, measure = c("RR", "RD"), ci = 95, estimate = c("crude", "summary"))
+hp.test(data, ci = 95, estimate = c("crude", "summary"))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{data}{
 a vector of crude or stratified data
 }
-\item{measure}{
-the measure to be used. Measures could be RR (risk ratio) or RD (risk difference)
+  \item{ci}{
+an object which indicates the percent of confidence interval, default is set to 95
 }
-\item{ci}{
-an object which indicates the percentage of confidence interval, default is set to 95
-}
-\item{estimate}{
+  \item{estimate}{
 a vector indicating crude or summary estimate
 }
 }
@@ -52,9 +49,7 @@ Sadia Sharmin
 }
 \examples{
 crude.data <- c (27,44,95,443)
-risk (crude.data, measure = "RR", ci = 95, estimate = "crude")
+hp.test (crude.data, ci = 95, estimate = "crude")
 strat.data <- c (1,17,7,257,3,7,14,52,9,15,30,107,14,5,44,27)
-risk (strat.data, measure = "RD", ci = 95, estimate = "summary")
+hp.test (strat.data, ci = 95, estimate = "summary")
 }
-
-
