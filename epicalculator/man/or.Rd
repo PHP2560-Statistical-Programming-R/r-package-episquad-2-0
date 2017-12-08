@@ -30,7 +30,7 @@ abbreviation for confidence interval. It should be a number between 1 to 100. Th
 %% ...
 }
 \references{
-%% ~put references to the literature/web site here ~
+Rothman KJ, Greenland S (1998). Modern Epidemiology. Lippincott Williams, & Wilkins, Philadelphia, pp. 271.
 }
 \author{
 Catrina Mueller-Leonhard
