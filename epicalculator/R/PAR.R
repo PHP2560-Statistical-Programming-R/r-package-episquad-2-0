@@ -30,8 +30,8 @@ PAR<- function(table, ci=95){
   PAR.upper.CI <- PAR + (qnorm(z) * se)
   PAR.lower.CI <- PAR - (qnorm(z) * se)
   print(paste("Population Attributable Risk ", round(PAR,3), ", ", ci, "% CI: ", "(", round(PAR.lower.CI,3), " to ", round(PAR.upper.CI,3), ")", sep=""))
-  
-  
+
+
 }
 
 #PAR % with Confidence Intervals
@@ -41,7 +41,6 @@ PARpercent<- function(table, ci=95){
   z<- 1-(.5*((100-ci)/100))
   PARpercent.upper.CI <- PARpercent + (qnorm(z) * sePARpercent)
   PARpercent.lower.CI <- PARpercent - (qnorm(z) * sePARpercent)
-  
   print(paste("Population Attributable Risk Percent ", round(PARpercent,3), "%", ", ", ci, "% CI: ", "(", round(PARpercent.lower.CI,2), "% to ", round(PARpercent.upper.CI,2), "%)", sep=""))
 }
 
