@@ -1,14 +1,17 @@
 \name{PAR}
 \alias{PAR}
+\alias{PARpercent}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-PAR function
+Population Attributable Risk and Population Attributable Risk Percent Function
 }
 \description{
-Calculates the population attributable risk with confidence intervals. Walter confidence intervals were used. The default confidence interval setting is at 95 but can be altered as needed.
+Calculates the population attributable risk and population attributable risk percent with confidence intervals. Walter confidence intervals were used in the function. The default confidence interval setting is at 95 but can be altered as needed.
 }
 \usage{
-PAR (table, ci= 95)
+PAR(table, ci=95)
+
+PARpercent(table, ci=95)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -52,5 +55,9 @@ Catrina Mueller-Leonhard
 table1<- tablex(23,45,60,789)
 
 # using the table created above, calculates the population attributable risk
-PAR(table1, ci= 75)}
+PAR(table1, ci= 75)
+
+# using the table created above, calculates the population attributable risk percent
+PARpercent(table1, ci= 75)
 }
+
