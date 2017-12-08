@@ -1,5 +1,5 @@
-# r-package-episquad
-r-package-episquad created by GitHub Classroom
+# r-package-Epicaclculator
+r-package-Epicaclculator created by GitHub Classroom
 ---
 author: "Sadia Sharmin, Ze Zhang, Catrina Mueller-Leonhard"
 ---
