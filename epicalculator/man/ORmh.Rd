@@ -54,5 +54,5 @@ Catrina Mueller-Leonhard
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-ORmh ( a=2, b= 45, c=77, d=789, ci= 75)
+ORmh ( a=2, b= 45, c=77, d=789, ci= 75)}
 

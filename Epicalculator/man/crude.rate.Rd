@@ -1,23 +1,22 @@
-\name{ci.summary.irr}
-\alias{ci.summary.irr}
+\name{crude.rate}
+\alias{crude.rate}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Confidence interval for Summary Rate
+Crude Rate Calculation
 }
 \description{
-This function calculate confidence interval for summary rate ratio
+This function takes 2 by 2 table and calculate crude rate ratio and rate difference
 }
 \usage{
-ci.summary.irr(data, ci)
+crude.rate(table, measure)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{data}{
-data should be a list of tables, it could be created by using stratified.table()
+  \item{table}{
+2 by 2 table can be created using crude.table function
 }
-\item{data}{
-indicate how much confidence interval do you want
-}
+ \item{measure}{
+indicate you want to calculate either rate ratio or rate difference
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -45,5 +44,6 @@ Ze Zhang
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-data1<-stratified.table(c(41,15,28010,19017,23,42,14679,45363))
-ci.summary.irr(data1,95)
+table1 <- crude.table(41,15,28010,19017)
+crude.Rate (table1, measure=”IRR)
+crude.Rate (table1, measure=”IRD)}

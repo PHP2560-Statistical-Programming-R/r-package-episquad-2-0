@@ -1,19 +1,22 @@
-\name{my.table}
-\alias{my.table}
+\name{ci.summary.irr}
+\alias{ci.summary.irr}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Creating Contigency Table
+Confidence interval for Summary Rate
 }
 \description{
-This function takes a vector of data and creates one to five 2 X 2 contingency tables of exposure and disease depending on the length of the vector
+This function calculate confidence interval for summary rate ratio
 }
 \usage{
-my.table (data)
+ci.summary.irr(data, ci)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{data}{
-a vector of data that can be used to create 2 X 2 tables
+data should be a list of tables, it could be created by using stratified.table()
+}
+\item{data}{
+indicate how much confidence interval do you want
 }
 }
 \details{
@@ -27,10 +30,10 @@ a vector of data that can be used to create 2 X 2 tables
 %% ...
 }
 \references{
-Kenneth J. Rothman and Sander Greenland (1998), Modern Epidemiology, Lippincott-Raven Publishers
+%% ~put references to the literature/web site here ~
 }
 \author{
-Sadia Sharmin
+Ze Zhang
 }
 \note{
 %%  ~~further notes~~
@@ -42,9 +45,6 @@ Sadia Sharmin
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-crude.data <- c (1,2,3,4)
-my.table (crude.data)
-strat.data <- c (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
-my.table (strat.data)
-
-
+data1<-stratified.table(c(41,15,28010,19017,23,42,14679,45363))
+ci.summary.irr(data1,95)
+}

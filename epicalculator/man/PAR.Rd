@@ -55,4 +55,4 @@ Catrina Mueller-Leonhard
 \seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
-\examples{
+\examples{}

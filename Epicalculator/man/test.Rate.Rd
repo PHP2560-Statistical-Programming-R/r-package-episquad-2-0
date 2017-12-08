@@ -2,10 +2,10 @@
 \alias{test.Rate}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Hypothesis test for Crude Rate
+Hypothesis test for Crude Rate Data
 }
 \description{
-This function does Chi Square hypothesis test for crude data
+This function does Chi Square hypothesis test for crude rate data
 }
 \usage{
 test.Rate(table)
@@ -43,4 +43,4 @@ Ze Zhang
 }
 \examples{
 table1<- crude.table(41,15,28010,19017)
-test.Rate(table1)
+test.Rate(table1)}

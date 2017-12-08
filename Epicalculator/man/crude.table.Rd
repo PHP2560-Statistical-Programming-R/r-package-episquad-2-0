@@ -1,23 +1,28 @@
-\name{crude.rate}
-\alias{crude.rate}
+\name{crude.table}
+\alias{crude.table}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Crude Rate Calculation
+Contingency Table for Rate Data
 }
 \description{
-This function takes 2 by 2 table and calculate crude rate ratio and rate difference
+This function takes raw numbers and makes a 2 by 2 table for further analysis, this function is designed for crude rate data analysis
 }
 \usage{
-crude.Rate(table, measure =”IRR”)
-crude.Rate(table, measure =”IRD”)
+crude.table(a,b,c,d)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{table}{
-2 by 2 table can be created using crude.table() function
+  \item{a}{
+number of exposed and diseased people
 }
- \item{measure}{
-indicate you want to calculate either rate ratio or rate difference
+\item{b}{
+number of unexposed and diseased people
+}
+\item{c}{
+exposed person-time
+}
+\item{d}{
+unexposed person-time
 }
 }
 \details{
@@ -46,6 +51,4 @@ Ze Zhang
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-table1<- crude.table(41,15,28010,19017)
-crude.Rate(table1, measure=”IRR)
-crude.Rate(table1, measure=”IRD)
+crude.table(41,15,28010,19017)}

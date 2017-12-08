@@ -2,10 +2,10 @@
 \alias{stratified.test}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Hypothesis Test for Stratified Data
+Hypothesis Test for Stratified Rate Data
 }
 \description{
-This function does Chi Square hypothesis test for stratified data
+This function does Chi Square hypothesis test for stratified rate data
 }
 \usage{
 stratified.test(data)
@@ -43,4 +43,4 @@ Ze Zhang
 }
 \examples{
 data1<-stratified.table(c(41,15,28010,19017,23,42,14679,45363))
-stratified.test(data1)
+stratified.test(data1)}

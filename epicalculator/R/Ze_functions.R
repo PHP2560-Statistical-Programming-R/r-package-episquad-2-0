@@ -1,5 +1,9 @@
 #input data is in a 2X2 table format where a represent exposed and diseased, b represent not exposed but diseased, c represent exposed person-time and d represent not exposed person-time
 crude.table<- function(a,b,c,d){
+  if (a<0 | b<0 | c<0| d<0){
+  print("Warning: cannot have negative value")
+} else
+{
   m1<-a+b #total diseased
   t<-c+d #total person-time
   tab<- matrix(c(a, b, m1, c, d, t), ncol=3, byrow = T) #create a matrix with the marginal values
@@ -7,6 +11,7 @@ crude.table<- function(a,b,c,d){
   rownames(tab) <- c('Disease', 'PersonTime')
   tab.table <- as.table(tab)
   return(tab.table)
+}
 }
 
 
@@ -31,13 +36,13 @@ rate.ci<-function(table, ci, measure=c("IRR","IRD")) {#will calculate rate ratio
   varx<-sqrt(1/table[1,1]+1/table[1,2])
   lower.ci<-exp(x-z*varx)
   upper.ci<-exp(x+z*varx)#calculate upper and lower confidence interval
-  print(paste("IRD ", ci, "%CI: ", "(", round(lower.ci,5), " to ", round(upper.ci,5), ")", sep=""))
+  print(paste(ci, "%CI: ", "(", round(lower.ci,5), " to ", round(upper.ci,5), ")", sep=""))
 }
 else {x<-table[1,1]/table[2,1]-table[1,2]/table[2,2]
       varx<-table[1,1]/(table[2,1]*table[2,1])+table[1,2]/(table[2,2]*table[2,2])
       lower.ci<-x-z*sqrt(varx)
       upper.ci<-x+z*sqrt(varx)#calculate upper and lower confidence interval
-      print(paste("IRR ", ci, "%CI: ", "(", round(lower.ci,5), " to ", round(upper.ci,5), ")", sep=""))
+      print(paste( ci, "%CI: ", "(", round(lower.ci,5), " to ", round(upper.ci,5), ")", sep=""))
 }
 }
 
@@ -168,7 +173,7 @@ summary.irr<-function(data) #data should be a list of tables
              return(ci)}
  
 #Hypothesis Test Chi Square test for stratified data:
- stratified.test<-function(data) {
+ stratified.test<-function(data) {#data should be a list of tables
       if(length(data) %in% c(2,3,4,5)){
         x<-c()
         ex<-c()

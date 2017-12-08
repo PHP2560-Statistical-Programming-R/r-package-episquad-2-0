@@ -1,26 +1,19 @@
-\name{rate.ci}
-\alias{rate.ci}
+\name{summary.irr}
+\alias{summary.irr}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Confidence Interval of Crude Rate
+Summary Rate Calculation
 }
 \description{
-This function calculates confidence interval of crude rate ratio or rate difference
+This function calculate summary rate ratio using Mantel‐Haenszel weights for stratified data
 }
 \usage{
-rate.ci(table, ci, measure =”IRR”)
-rate.ci(table, ci, measure =”IRD”)
-
+summary.irr(data)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{table}{
-2 by 2 table can be created using crude.table() function
-}
-\item{ci}{
-indicate how much confidence interval do you want
-measure: indicate you want to calculate confidence interval either for rate ratio or rate difference
-
+  \item{data}{
+data should be a list of tables, it could be created by using stratified.table()
 }
 }
 \details{
@@ -49,6 +42,5 @@ Ze Zhang
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-table1<- crude.table(41,15,28010,19017)
-rate.ci(table1,95,  measure=”IRR)
-rate.ci(table1, 95, measure=”IRD)
+data1<-stratified.table(c(41,15,28010,19017,23,42,14679,45363))
+summary.irr(data1)}

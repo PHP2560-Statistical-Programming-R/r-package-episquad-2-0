@@ -1,28 +1,26 @@
-\name{crude.table}
-\alias{crude.table}
+\name{rate.ci}
+\alias{rate.ci}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Contingency Table
+Confidence Interval of Crude Rate
 }
 \description{
-This function takes raw numbers and makes a 2 by 2 table for further analysis, this function is designed for crude data analysis
+This function calculates confidence interval of crude rate ratio or rate difference
 }
 \usage{
-crude.table(a,b,c,d)
+rate.ci(table, ci, measure =”IRR”)
+rate.ci(table, ci, measure =”IRD”)
+
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{a}{
-number of exposed and diseased people
+  \item{table}{
+2 by 2 table can be created using crude.table() function
 }
-\item{b}{
-number of unexposed and diseased people
-}
-\item{c}{
-exposed person-time
-}
-\item{d}{
-unexposed person-time
+\item{ci}{
+indicate how much confidence interval do you want
+measure: indicate you want to calculate confidence interval either for rate ratio or rate difference
+
 }
 }
 \details{
@@ -51,4 +49,7 @@ Ze Zhang
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-crude.table(41,15,28010,19017)
+table1<- crude.table(41,15,28010,19017)
+rate.ci(table1,95,  measure=”IRR)
+rate.ci(table1, 95, measure=”IRD)
+}
