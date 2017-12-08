@@ -2,10 +2,10 @@
 \alias{my.table}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Creating Contigency Table for Risk Data
+Contingency Table
 }
 \description{
-This function takes a vector of data and creates one to five 2 X 2 contingency tables of exposure and disease depending on the length of the vector for risk data
+This function takes a vector of data and creates one to five 2 X 2 tables of exposure and disease depending on the length of the vector.
 }
 \usage{
 my.table (data)
@@ -42,9 +42,10 @@ Sadia Sharmin
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-crude.data <- c (1,2,3,4)
+crude.data <- c (27,44,95,443)
 my.table (crude.data)
-strat.data <- c (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
-my.table (strat.data)}
+strat.data <- c (1,17,7,257,3,7,14,52,9,15,30,107,14,5,44,27)
+my.table (strat.data)
+}
 
 

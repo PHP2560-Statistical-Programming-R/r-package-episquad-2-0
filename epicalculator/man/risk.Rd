@@ -5,10 +5,10 @@
 Risk Calculation
 }
 \description{
-This function takes a vector of data and calculates risk ratio or risk difference along with confidence interval and result of hypothesis testing for crude and stratified data
+This function takes a vector of data and calculates risk ratio or risk difference along with confidence interval and result of hypothesis testing for crude and stratified data.
 }
 \usage{
-risk (data, measure, ci = 95, estimate)
+risk (data, measure = c("RR", "RD"), ci = 95, estimate = c("crude", "summary"))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -22,7 +22,7 @@ the measure to be used. Measures could be RR (risk ratio) or RD (risk difference
 an object which indicates the percentage of confidence interval, default is set to 95
 }
 \item{estimate}{
-a vector indicating crude or summary estimate.
+a vector indicating crude or summary estimate
 }
 }
 \details{
@@ -51,8 +51,15 @@ Sadia Sharmin
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-crude.data <- c (1,2,3,4)
+crude.data <- c (27,44,95,443)
 risk (crude.data, measure = "RR", ci = 95, estimate = "crude")
+<<<<<<< HEAD
 strat.data <- c (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
 risk (strat.data, measure = "RD", ci = 95, estimate = "summary")}
+=======
+strat.data <- c (1,17,7,257,3,7,14,52,9,15,30,107,14,5,44,27)
+risk (strat.data, measure = "RD", ci = 95, estimate = "summary")
+}
+
+>>>>>>> 92562225baab00f2fcad30d99ed3c4293b7f4a2b
 
