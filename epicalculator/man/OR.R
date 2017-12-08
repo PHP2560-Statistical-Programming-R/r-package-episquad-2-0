@@ -1,66 +1,57 @@
-#Basic Input Information
-
-#'a' = exposed and diseased
-#'b' = non-exposed but diseased
-#'c' = exposed but not diseased
-#'d' = non-exposed and not diseased
-
-table<- function(a,b,c,d){
-  n1<-a+c # total exposed
-  n0<-b+d # total non-exposed
-  m1<-a+b # total diseased
-  m0<-c+d # total non-diseased
-  N<- a+b+c+d # total
-  tab<- matrix(c(a, b, m1, c, d, m0, n1, n0, N), ncol=3, byrow = T) #create a matrix with the marginal values
-  colnames(tab) <- c('Exposure', 'No Exposure', 'Total')
-  rownames(tab) <- c('Disease', 'No Disease', 'Total')
-  tab.table <- as.table(tab)
-  return(tab.table)
-  if (a<0 | b<0 | c<0| d<0){
-    print("Warning: cannot have negative value")
-  }
-  if (ci<0){
-    print("Warning: cannot have negative value for confidence interval")
-  }
+\name{OR}
+\alias{OR}
+%- Also NEED an '\alias' for EACH other topic documented here.
+\title{
+Odds Ratio Calculation
+}
+\description{
+Calculates the crude odds ratio with confidence intervals. The default confidence interval setting is 95 percent but can be altered as needed.
+}
+\usage{
+OR(a, b, c, d, ci = 95)
+}
+% maybe also 'usage' for other objects documented here.
+\arguments{
+  \item{a}{
+represents the number of exposed and diseased. Will not accept a value less than 0.
+}
+\item{b}{
+represents the number of non-exposed but diseased. Will not accept a value less than 0.
+}
+\item{c}{
+represents the number of exposed but not diseased. Will not accept a value less than 0.
+}
+\item{d}{
+represents the number of non-exposed and not diseased. Will not accept a value less than 0.
+}
+\item{ci}{
+abbreviation for confidence interval. It should be a number between 1 to 100. The default setting is 95. The confidence interval will not accept a value of 0.
+}
+}
+\details{
+%%  ~~ If necessary, more details than the description above ~~
+}
+\value{
+%%  ~Describe the value returned
+%%  If it is a LIST, use
+%%  \item{comp1 }{Description of 'comp1'}
+%%  \item{comp2 }{Description of 'comp2'}
+%% ...
+}
+\references{
+%% ~put references to the literature/web site here ~
+}
+\author{
+Catrina Mueller-Leonhard
+}
+\note{
+%%  ~~further notes~~
 }
 
+%% ~Make other sections like Warning with \section{Warning }{....} ~
 
-#Function for calculating the Odds Ratio with Confidence Intervals
-# 95% Confidence Interval is the default setting
-OR<- function(table, ci=95){
-  x<- log(table[1,1]*table[2,2]/table[1,2]*table[2,1])
-  OR<- (table[1,1]*table[2,2]/table[1,2]*table[2,1])
-  var<- ((1/table[1,1])+(1/table[1,2])+(1/table[2,1])+(1/table[2,2]))
-  se<- sqrt(var)
-  z<- 1-(.5*((100-ci)/100))
-  upper.CI <- exp(x + (qnorm(z) * se))
-  lower.CI <- exp(x - (qnorm(z) * se))
-  print(paste("The Odds Ratio is", round(OR, 2), sep=" "))
-  print(paste(ci, "% CI: ", "(", round(lower.CI,2), " to ", round(upper.CI,2), ")", sep=""))
-  if (ci<0){
-    print("Warning: cannot have negative value for confidence interval")
-  }
+\seealso{
+%% ~~objects to See Also as \code{\link{help}}, ~~~
 }
-
-
-#Function for calculating the Odds Ratio Using Mantel-Haenszel Weights
-
-
-ORmh <- function(table, ci=95){
-  ORmh<- (table[2,1]/table[1,2])
-  x<- log(ORmh)
-  var<- (1/table[1,2])+(1/table[2,1])
-  se<-sqrt(var)
-  z<- 1-(.5*((100-ci)/100))
-  upper.CI <- exp(x + (qnorm(z) * se))
-  lower.CI <- exp(x - (qnorm(z) * se))
-  print(paste("the Mantel-Haenszel Odds Ratio is", round(ORmh, 2), sep=" "))
-  print(paste(ci, "% CI: ", "(", round(lower.CI,2), " to ", round(upper.CI,2), ")", sep=""))
-}
-
-
-
-
-
-
-
+\examples{
+OR( a=2, b= 45, c=77, d=789, ci= 75)}
