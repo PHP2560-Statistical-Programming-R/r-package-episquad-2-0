@@ -45,5 +45,8 @@ Catrina Mueller-Leonhard
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
+# creates a matrix table from a vector
+table1<- tablex(23,45,60,789)
 
+# using the table created above, calculates the Odds Ratio
 OR(table1, ci= 75)}
