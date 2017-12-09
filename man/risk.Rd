@@ -5,7 +5,7 @@
 Risk Calculation
 }
 \description{
-This function takes a vector of data and calculates risk ratio or risk difference along with confidence interval and result of hypothesis testing for crude and stratified data.
+This function takes a vector of data and calculates risk ratio or risk difference along with confidence interval and result of hypothesis testing for crude and stratified data. Data will be weighted using Mantel‐Haenszel weights for risk ratio and Inverse variance weights for risk difference.
 }
 \usage{
 risk (data, measure = c("RR", "RD"), ci = 95, estimate = c("crude", "summary"))
@@ -36,7 +36,7 @@ a vector indicating crude or summary estimate
 %% ...
 }
 \references{
-Kenneth J. Rothman and Sander Greenland (1998), Modern Epidemiology, Lippincott-Raven Publishers
+Rothman KJ, Greenland S (1998). Modern Epidemiology. Lippincott Williams, & Wilkins, Philadelphia, pp. 271.
 }
 \author{
 Sadia Sharmin

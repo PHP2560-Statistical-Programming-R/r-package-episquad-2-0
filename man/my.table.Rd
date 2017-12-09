@@ -27,7 +27,7 @@ a vector of data that can be used to create 2 X 2 tables
 %% ...
 }
 \references{
-Kenneth J. Rothman and Sander Greenland (1998), Modern Epidemiology, Lippincott-Raven Publishers
+
 }
 \author{
 Sadia Sharmin

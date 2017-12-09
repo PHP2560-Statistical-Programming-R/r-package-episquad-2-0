@@ -32,7 +32,7 @@ a vector indicating crude or summary estimate
 %% ...
 }
 \references{
-Kenneth J. Rothman and Sander Greenland (1998), Modern Epidemiology, Lippincott-Raven Publishers
+Rothman KJ, Greenland S (1998). Modern Epidemiology. Lippincott Williams, & Wilkins, Philadelphia, pp. 271.
 }
 \author{
 Sadia Sharmin
