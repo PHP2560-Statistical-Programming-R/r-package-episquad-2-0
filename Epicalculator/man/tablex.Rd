@@ -5,28 +5,28 @@
 Contingency Table
 }
 \description{
-This function takes raw numbers and makes a 2 by 2 table for further analysis, this function is designed for Odds Ratio, Arributabl Risk, Attributable Risk Percent, Population Arributable Risk, Population Attributable Risk Percent analysis
+This function takes raw numbers and makes a three-by-three table for further analysis. The third row and columns are sums of the traditional two-by-two table. The tablex function is required for Arributable Risk (AR), Attributable Risk Percent (ARpercent), Population Arributable Risk (PAR), Population Attributable Risk Percent (PARpercent) analysis.
 }
 \usage{
 tablex(a,b,c,d)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{a}{
-number of exposed and diseased people
+ \item{a}{Represents the number of exposed and diseased. It will not accept a value less than 0.
+%%     ~~Describe \code{a} here~~
 }
-\item{b}{
-number of unexposed and diseased people
+  \item{b}{Represents the number of non-exposed but diseased. It will not accept a value less than 0.
+%%     ~~Describe \code{b} here~~
 }
-\item{c}{
-number of exposed and nondiseased people
+  \item{c}{Represents the number of exposed but not diseased. It will not accept a value less than 0.
+%%     ~~Describe \code{c} here~~
 }
-\item{d}{
-number of eunxposed and nondiseased people
+  \item{d}{Represents the number of non-exposed and not diseased. It will not accept a value less than 0.
+%%     ~~Describe \code{d} here~~
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+The tablex function is required for Arributable Risk (AR), Attributable Risk Percent (ARpercent), Population Arributable Risk (PAR), Population Attributable Risk Percent (PARpercent) analysis.
 }
 \value{
 %%  ~Describe the value returned
@@ -36,7 +36,9 @@ number of eunxposed and nondiseased people
 %% ...
 }
 \references{
-Kenneth J. Rothman and Sander Greenland (1998), Modern Epidemiology, Lippincott-Raven Publishers
+Rothman KJ, Greenland S (1998). Modern Epidemiology. Lippincott Williams, & Wilkins, Philadelphia, pp. 271.
+
+Szklo M, Nieto J (2006). Epidemiology: Beyond the Basics 2nd Edition. Jones & Bartlett Learning, Burlington, MA, Appendix A.
 }
 \author{
 Catrina Mueller-Leonhard
@@ -51,5 +53,6 @@ Catrina Mueller-Leonhard
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
+#creates a three-by-three matrix from a vector
 tablex(12,23,13,41)
 }
