@@ -6,6 +6,9 @@
 #'d' = non-exposed and not diseased
 
 tablex<- function(a,b,c,d){
+  if (a<0 | b<0 | c<0| d<0){
+    print("Warning: cannot have negative value")
+  }else{
   n1<-a+c # total exposed
   n0<-b+d # total non-exposed
   m1<-a+b # total diseased
@@ -15,8 +18,6 @@ tablex<- function(a,b,c,d){
   colnames(tab) <- c('Exposure', 'No Exposure', 'Total')
   rownames(tab) <- c('Disease', 'No Disease', 'Total')
   tab.table <- as.table(tab)
-  return(tab.table)
-  if (a<0 | b<0 | c<0| d<0){
-    print("Warning: cannot have negative value")
-  }
+  return(tab.table)}
+
 }
