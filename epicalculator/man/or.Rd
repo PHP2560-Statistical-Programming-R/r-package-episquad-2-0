@@ -13,7 +13,7 @@ OR(table, ci=95)
 % maybe also 'usage' for other objects documented here.
 \arguments{
   \item{table}{requires the table function which creates a matrix where 'a'
-represents the number of exposed and diseased, 'b' represents the number of non-exposed but diseased, 'c' represents the number of exposed but not diseased, and 'd' represents the number of non-exposed and not diseased. The table function also calulates row and column totals The table function will not accept a value less than  0.
+represents the number of exposed and diseased, 'b' represents the number of non-exposed but diseased, 'c' represents the number of exposed but not diseased, and 'd' represents the number of non-exposed and not diseased. The table function will not accept a value less than  0.
 }
   \item{ci}{
 abbreviation for confidence interval. It should be a number between 1 to 100. The default setting is 95. The confidence interval will not accept a value of 0.
@@ -48,5 +48,6 @@ Catrina Mueller-Leonhard
 # creates a matrix table from a vector
 table1<- tablex(23,45,60,789)
 
-# using the table created above, calculates the Odds Ratio
-OR(table1, ci= 75)}
+# using the table created above, calculates the Odds Ratio with confidence intervals
+OR(table1, ci= 75)
+}
