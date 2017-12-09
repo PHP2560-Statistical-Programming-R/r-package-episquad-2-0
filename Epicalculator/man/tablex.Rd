@@ -5,7 +5,7 @@
 Contingency Table
 }
 \description{
-This function takes raw numbers and makes a 2 by 2 table for further analysis, this function is designed for Odds Ratio, Arributabl Risk, Attributable Risk Percent, Population Arributabl Risk, Population Attributable Risk Percent analysis
+This function takes raw numbers and makes a 2 by 2 table for further analysis, this function is designed for Odds Ratio, Arributabl Risk, Attributable Risk Percent, Population Arributable Risk, Population Attributable Risk Percent analysis
 }
 \usage{
 tablex(a,b,c,d)
