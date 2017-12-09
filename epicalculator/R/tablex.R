@@ -16,7 +16,7 @@ tablex<- function(a,b,c,d){
   rownames(tab) <- c('Disease', 'No Disease', 'Total')
   tab.table <- as.table(tab)
   if (a<0|b<0|c<0|d<0){
-    return("Warning: cannot have negative value")
+    return("Warning: cannot have negative value(s)")
   }
-  return(tab.table)
+    return(tab.table)
 }
