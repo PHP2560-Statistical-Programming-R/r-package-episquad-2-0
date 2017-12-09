@@ -52,3 +52,4 @@ Catrina Mueller-Leonhard
 }
 \examples{
 tablex(12,23,13,41)
+}
