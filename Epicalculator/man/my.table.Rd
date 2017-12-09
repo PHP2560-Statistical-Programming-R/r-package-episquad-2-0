@@ -5,7 +5,7 @@
 Contingency Table
 }
 \description{
-This function takes a vector of data and creates one to five 2 X 2 tables of exposure and disease depending on the length of the vector.
+This function takes a vector of data and creates one to five 2 X 2 tables of exposure and disease depending on the length of the vector.(this function is designed for risk() function in the package)
 }
 \usage{
 my.table (data)

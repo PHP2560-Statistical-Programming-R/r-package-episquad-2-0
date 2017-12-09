@@ -1,19 +1,28 @@
-\name{stratified.table}
-\alias{stratified.table}
+\name{tablex}
+\alias{tablex}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Table for Stratified Rate Data
+Contingency Table
 }
 \description{
-This function takes raw numbers and makes 2 by 2 tables for further analysis, this function is designed for stratified rate data analysis, the number of stratified tables is limited to 2 to 5.
+This function takes raw numbers and makes a 2 by 2 table for further analysis, this function is designed for Odds Ratio, Arributabl Risk, Attributable Risk Percent, Population Arributabl Risk, Population Attributable Risk Percent analysis
 }
 \usage{
-stratified.table(data)
+tablex(a,b,c,d)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{data}{
-data should be a set of numbers, the amount of numbers in the set is limited to 8 to 20 as the number of stratified tables is limited to 2 to 5.
+  \item{a}{
+number of exposed and diseased people
+}
+\item{b}{
+number of unexposed and diseased people
+}
+\item{c}{
+number of exposed and nondiseased people
+}
+\item{d}{
+number of eunxposed and nondiseased people
 }
 }
 \details{
@@ -30,7 +39,7 @@ data should be a set of numbers, the amount of numbers in the set is limited to 
 Kenneth J. Rothman and Sander Greenland (1998), Modern Epidemiology, Lippincott-Raven Publishers
 }
 \author{
-Ze Zhang
+Catrina Mueller-Leonhard
 }
 \note{
 %%  ~~further notes~~
@@ -42,5 +51,4 @@ Ze Zhang
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-data1<-c(41,15,28010,19017,23,42,14679,45363)
-stratified.table(data1)}
+tablex(12,23,13,41)

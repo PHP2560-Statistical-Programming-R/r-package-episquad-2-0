@@ -5,18 +5,22 @@
 Crude Rate Calculation
 }
 \description{
-This function takes 2 by 2 table and calculate crude rate ratio and rate difference
+This function takes 2 by 2 table and calculate crude rate ratio and rate difference with confidence interval
 }
 \usage{
-crude.rate(table, measure)
+crude.rate(table, ci, measure)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{table}{
 2 by 2 table can be created using crude.table function
 }
+  \item{ci}{
+indicate confidence interval
+}
  \item{measure}{
 indicate you want to calculate either rate ratio or rate difference
+}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -29,7 +33,7 @@ indicate you want to calculate either rate ratio or rate difference
 %% ...
 }
 \references{
-%% ~put references to the literature/web site here ~
+Kenneth J. Rothman and Sander Greenland (1998), Modern Epidemiology, Lippincott-Raven Publishers
 }
 \author{
 Ze Zhang
@@ -45,5 +49,5 @@ Ze Zhang
 }
 \examples{
 table1 <- crude.table(41,15,28010,19017)
-crude.Rate (table1, measure=”IRR)
-crude.Rate (table1, measure=”IRD)}
+crude.Rate (table1, 95,measure=”IRR)
+crude.Rate (table1, 90,measure=”IRD)}

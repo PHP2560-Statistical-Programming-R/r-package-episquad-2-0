@@ -27,7 +27,7 @@ test.Rate(table)
 %% ...
 }
 \references{
-%% ~put references to the literature/web site here ~
+Kenneth J. Rothman and Sander Greenland (1998), Modern Epidemiology, Lippincott-Raven Publishers
 }
 \author{
 Ze Zhang
