@@ -2,7 +2,7 @@
 # 95% Confidence Interval is the default setting
 OR<- function(table, ci=95){
   x<- log((table[1,1]*table[2,2]/table[1,2]*table[2,1]))
-  OR<- (table[1,1]*table[2,2]/table[1,2]*table[2,1])
+  OR<- ((table[1,1]*table[2,2])/(table[1,2]*table[2,1]))
   var<- ((1/table[1,1])+(1/table[1,2])+(1/table[2,1])+(1/table[2,2]))
   se<- sqrt(var)
   z<- 1-(.5*((100-ci)/100))
