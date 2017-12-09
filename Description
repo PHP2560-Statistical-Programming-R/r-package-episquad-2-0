@@ -1,1 +1,10 @@
-
+Package: Epicalculator
+Type: Package
+Title: Calculator for Analyzing Epidemiological Data
+Version: 0.1.0
+Author: Sadia Sharmin, Catrina Mueller-Leonhard, Ze Zhang
+Maintainer: <sadia_sharmin@brown.edu>
+Description: This package was created to contain tools designed for epidemiological data analysis.    The functions are based on count data provided in traditional two-by-two tabular data format. They have the capability of analyzing stratified data and performing chi-square hypothesis testing of homogeneity. 
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
