@@ -49,5 +49,5 @@ Ze Zhang
 }
 \examples{
 table1 <- crude.table(41,15,28010,19017)
-crude.Rate (table1, 95,measure=”IRR)
-crude.Rate (table1, 90,measure=”IRD)}
+crude.Rate (table1, 95,measure="IRR")
+crude.Rate (table1, 90,measure="IRD")}
