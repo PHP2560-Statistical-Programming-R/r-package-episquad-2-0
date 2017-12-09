@@ -1,3 +1,8 @@
+---
+output:
+  html_document: default
+  word_document: default
+---
 <center>
 # Epicalculator
 </center>
@@ -47,12 +52,15 @@ devtools::install_github("PHP2560-Statistical-Programming-R/r-package-episquad-2
 
 ```
 
+&nbsp;
+
 ### Authors: 
 
-*Sadia Sharmin 
-*Ze Zhang 
-*Catrina Mueller-Leonhard
+* Sadia Sharmin 
+* Ze Zhang 
+* Catrina Mueller-Leonhard
 
+&nbsp;
 
 ### Contributions:
 
@@ -60,6 +68,7 @@ devtools::install_github("PHP2560-Statistical-Programming-R/r-package-episquad-2
 * Ze Zhang - Functions 4 to 7 and code review
 * Catrina Mueller-Leonhard - Functions 8 to 14 and documentation of the package
 
+&nbsp;
 
 #### License:
 GPL-2
