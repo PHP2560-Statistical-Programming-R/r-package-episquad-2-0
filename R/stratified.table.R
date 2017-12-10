@@ -69,7 +69,7 @@ stratified.table<-function(data) # data should be a set of vectors
     tab.table5 <- as.table(tab5)#change the matrix as a table
     tab.table<-list(stratification.level.1= tab.table1, stratification.level.2= tab.table2, stratification.level.3= tab.table3, stratification.level.4= tab.table4, stratification.level.5= tab.table5)
   }
-  else {tab.table<-c("this function is designed for 2 to 5 stratified tables")}
+  else {stop("this function is designed for 2 to 5 stratified tables")}
   return(tab.table)} #this function is designed for 2 or 5 stratified tables
 
 
