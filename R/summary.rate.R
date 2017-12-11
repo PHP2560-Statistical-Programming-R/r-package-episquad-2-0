@@ -24,7 +24,7 @@ summary.rate<-function(data, ci, measure=c("IRR","IRD"))  #data should be a list
       varx<-sum(upper)/(sum(lowerA)*sum(lowerB))
       lower.ci<-exp(x-z*sqrt(varx))
       upper.ci<-exp(x+z*sqrt(varx)) #calculate upper and lower confidence interval
-      output<-paste("Summary IRR: ", round(summary.rate.ratio,2), " ", ci, "%CI: ", "(", round(lower.ci,2), " to ", round(upper.ci,2), ")", sep="")
+      output<-paste("Summary IRR: ", round(summary.rate.ratio,2), " ", ci, "%CI: ", "( ", round(lower.ci,2), " to ", round(upper.ci,2), " )", sep="")
       }} else
       {for (l in 1:length(data)){ #this loop will calculate the stratum-specific estimates that we need for variance
         weight.strata[[l]]<-1/((1/data[[l]][1,1])+(1/data[[l]][1,2]))
@@ -35,11 +35,11 @@ summary.rate<-function(data, ci, measure=c("IRR","IRD"))  #data should be a list
         varx<-1/sum(weight.strata)
         lower.ci<-x-z*sqrt(varx)
         upper.ci<-x+z*sqrt(varx) #calculate upper and lower confidence interval
-        output<-paste("Summary IRD: ", round(summary.rate.difference,2), " ", ci, "%CI: ", "(", round(lower.ci,2), " to ", round(upper.ci,2), ")", sep="")
+        output<-paste("Summary IRD: ", round(summary.rate.difference,2), " ", ci, "%CI: ", "( ", round(lower.ci,2), " to ", round(upper.ci,2), " )", sep="")
       }}
     
       }
 
-  else {output<-c("this function is designed for 2 to 5 stratified tables to calculate summary IRR confidence interval")}
+  else {stop("this function is designed for 2 to 5 stratified tables to calculate summary IRR confidence interval")}
   return(output)}
 
