@@ -49,4 +49,6 @@ Ze Zhang
 }
 \examples{
 data1<-stratified.table(c(41,15,28010,19017,23,42,14679,45363))
-summary.irr(data1),95}
+summary.rate(data1, ci=95, "IRR")
+summary.rate(data1, ci=95, "IRD")
+}
